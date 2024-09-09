@@ -63,13 +63,9 @@ class UrlLauncherAndroid extends UrlLauncherPlatform {
     return launchUrl(
         url,
         LaunchOptions(
-            mode: useWebView
-                ? PreferredLaunchMode.inAppWebView
-                : PreferredLaunchMode.externalApplication,
-            webViewConfiguration: InAppWebViewConfiguration(
-                enableDomStorage: enableDomStorage,
-                enableJavaScript: enableJavaScript,
-                headers: headers)));
+            mode: useWebView ? PreferredLaunchMode.inAppWebView : PreferredLaunchMode.externalApplication,
+            webViewConfiguration:
+                InAppWebViewConfiguration(enableDomStorage: enableDomStorage, enableJavaScript: enableJavaScript, headers: headers)));
   }
 
   @override
@@ -111,18 +107,17 @@ class UrlLauncherAndroid extends UrlLauncherPlatform {
         ),
       );
     } else {
-      succeeded =
-          await _hostApi.launchUrl(url, options.webViewConfiguration.headers);
+      succeeded = await _hostApi.launchUrl(url, options.webViewConfiguration.headers);
     }
 
     // TODO(stuartmorgan): Remove this special handling as part of a
     // breaking change to rework failure handling across all platform. The
     // current behavior is backwards compatible with the previous Java error.
-    if (!succeeded) {
-      throw PlatformException(
-          code: 'ACTIVITY_NOT_FOUND',
-          message: 'No Activity found to handle intent { $url }');
-    }
+    // if (!succeeded) {
+    //   throw PlatformException(
+    //       code: 'ACTIVITY_NOT_FOUND',
+    //       message: 'No Activity found to handle intent { $url }');
+    // }
 
     return succeeded;
   }
