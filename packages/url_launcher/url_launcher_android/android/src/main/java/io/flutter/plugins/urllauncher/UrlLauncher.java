@@ -9,10 +9,13 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
+import android.content.pm.ResolveInfo;
 import android.os.Bundle;
 import android.provider.Browser;
 import android.util.Log;
 import androidx.annotation.NonNull;
+import android.content.pm.PackageManager;
 import androidx.annotation.Nullable;
 import androidx.annotation.VisibleForTesting;
 import androidx.browser.customtabs.CustomTabsClient;
@@ -23,6 +26,9 @@ import io.flutter.plugins.urllauncher.Messages.WebViewOptions;
 import java.util.Collections;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Set;
+import java.util.List;
+import java.util.HashSet;
 
 /**
  * Implements the Pigeon-defined interface for calls from Dart.
